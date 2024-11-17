@@ -1,0 +1,21 @@
+[package]
+name = "volev"
+version = "0.1.0"
+edition = "2021"
+
+[profile.release-pr]
+inherits = "release"
+lto = true
+panic = "abort"
+codegen-units = 1
+strip = true
+
+[lib]
+crate-type = ["cdylib"]
+bench = false
+
+[dependencies]
+jni = "0.21"
+tokio = { version = "1", features = ["rt", "macros"], default-features = false }
+libc = "0.2"
+evdev = { git = "https://github.com/emberian/evdev.git", features = ["tokio"] }
