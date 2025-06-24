@@ -12,7 +12,7 @@ $(BUILD_DIR)/$(JARFILE): Main.java
 
 $(BUILD_DIR)/libvolev.so: volev/src/* volev/Cargo.toml
 	mkdir -p $(BUILD_DIR)
-	cd volev; ./b.sh
+	cd volev; cargo ndk -t arm64-v8a -p 24 -- build -Zbuild-std
 	cp -f volev/target/aarch64-linux-android/release-pr/libvolev.so $(BUILD_DIR)/libvolev.so
 
 .PHONY : clean deploy
